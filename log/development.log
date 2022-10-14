@@ -3637,3 +3637,21 @@ Completed 200 OK in 10ms (Views: 5.1ms | ActiveRecord: 1.0ms | Allocations: 2278
 Completed 200 OK in 33ms (Views: 3.1ms | ActiveRecord: 16.4ms | Allocations: 7162)
 
 
+Started DELETE "/bookshelves/7" for 127.0.0.1 at 2022-10-14 14:52:54 +0300
+Processing by BookshelvesController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (1.3ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/bookshelves_controller.rb:26:in `destroy'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookshelves_controller.rb:27:in `destroy'
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "Bookshelf"], ["name", "pref_cover_image"], ["LIMIT", 1]]
+  ↳ app/controllers/bookshelves_controller.rb:27:in `destroy'
+  [1m[36mBookshelf Destroy (0.9ms)[0m  [1m[31mDELETE FROM "bookshelves" WHERE "bookshelves"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/bookshelves_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookshelves_controller.rb:27:in `destroy'
+Completed 204 No Content in 239ms (ActiveRecord: 68.1ms | Allocations: 5709)
+
+
