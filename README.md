@@ -14,8 +14,8 @@ This is a Book store project in which the user is able to perform the following 
 
 
 ## Access to the Front End
-_ Front here part[here](https://github.com/VincentLangat033/my-book-store-frontend)
--Feel free to contribute!
+_Front here part -[here](https://github.com/VincentLangat033/my-book-store-frontend)
+ - Feel free to contribute!
 
 
 
