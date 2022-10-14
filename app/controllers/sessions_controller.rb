@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by(username: params[:username])
         ##authenticate user credentials
+
         if user&.authenticate(params[:password])
             #set session and redirect on success
+            
             
             session[:user_id] = user.id
             render json: UserSerializer.new(user), status: :accepted
