@@ -46,7 +46,7 @@ This  project should conform to the following set of guidelines:
 - A `Comment` belongs to a `User` and belongs to a `book`
 
 # Screen Shot of the Book Store
-![image](book-store.png)
+![image](book-store1.png)
 
 
 # Known Bugs
