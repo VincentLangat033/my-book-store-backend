@@ -1,0 +1,151 @@
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4456168149268610670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRatings (20220715131531)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (233.5ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" bigserial primary key, "user_id" integer, "book_id" integer, "rating" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220715131531"]]
+  [1m[36mTRANSACTION (31.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(4456168149268610670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/me" for 127.0.0.1 at 2022-10-14 08:48:10 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+Filter chain halted as :authorized! rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 821)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 08:48:11 +0300
+Processing by UsersController#show as */*
+Filter chain halted as :authorized! rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 711)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-10-14 08:48:36 +0300
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"alexa2", "email"=>"alexa2@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "alexa2"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alexa2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "alexa2"], ["email", "alexa2@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2022-10-14 05:48:37.302339"], ["updated_at", "2022-10-14 05:48:37.302339"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (33.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mBookshelf Load (0.3ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+Completed 201 Created in 407ms (Views: 33.1ms | ActiveRecord: 43.0ms | Allocations: 43348)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 08:57:01 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.4ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 102ms (Views: 32.8ms | ActiveRecord: 10.1ms | Allocations: 39927)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 08:57:01 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.3ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 0.6ms | Allocations: 1568)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 08:57:49 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.4ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 7ms (Views: 3.1ms | ActiveRecord: 0.8ms | Allocations: 1564)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 08:57:49 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.6ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 10ms (Views: 6.9ms | ActiveRecord: 1.0ms | Allocations: 1564)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2022-10-14 08:59:49 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2022-10-14 08:59:53 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:02:18 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.4ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 72ms (Views: 22.4ms | ActiveRecord: 6.6ms | Allocations: 39919)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:02:18 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.3ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.7ms | Allocations: 1560)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:02:20 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.3ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.7ms | Allocations: 1564)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:02:20 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.3ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.7ms | Allocations: 1564)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:04:50 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.5ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 0.9ms | Allocations: 1558)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:04:53 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (0.4ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 0.8ms | Allocations: 1544)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-10-14 09:04:53 +0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_user'
+  [1m[36mBookshelf Load (1.6ms)[0m  [1m[34mSELECT "bookshelves".* FROM "bookshelves" WHERE "bookshelves"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 200 OK in 9ms (Views: 3.2ms | ActiveRecord: 3.1ms | Allocations: 1544)
+
+

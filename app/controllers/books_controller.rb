@@ -1,8 +1,7 @@
 class BooksController < ApplicationController
 
     skip_before_action :authorized!, only: [:index, :show]
-    # CREATE/VIEW methods only
-    # Admin delete/update method? #stretch
+  
 
     def index
         books = Book.all
