@@ -10,14 +10,19 @@ This is a Book store project in which the user is able to perform the following 
 - Through a GotoMy Books link, the user is able to access saved books
 - The User can then rate that book, update or delete that rating
 - A user can indicate whether they have read or whether they own that book.
+-And finally a user can remove that book from their library.
+
+
+## Access to the Front End
+_ Front here part[here](https://github.com/VincentLangat033/my-book-store-frontend)
+-Feel free to contribute!
 
 
 
 <h1> Setup/Installation Requirements </h1>
 <ol>
-<li>Clone the project using git -clone https://github.com/VincentLangat033/super-heroes  If you are not able to clone it, you can download the files as a zip folder</li>
-<li> Since this is a private repository, I have to add you as a contributor so that you can be able to access it
-Make sure to drop me an email and I will add you as a contributor ASAP </li>
+<li>Clone the project using git -clone https://github.com/VincentLangat033/my-book-store-backend  If you are not able to clone it, you can download the files as a zip folder</li>
+
 
  <li> Ensure that you have access to the complete file</li>
 
@@ -32,10 +37,11 @@ This  project should conform to the following set of guidelines:
 ## Models
 ### It creates the following relationships:
 
-- A `Hero` has many `Power`s through `HeroPower`
+- A `Book` has many `bookselves`s through `user_bookshelves`, source `user`
+- A `Book` has many `ratings`s through `user_ratings`, source `user`
 
-- A `Power` has many `Hero`s through `HeroPower`
+- A `User` has many `rated_books` through `ratings`, source `book`
 
-- A `HeroPower` belongs to a `Hero` and belongs to a `Power`
 
-Start by creating the models and migrations for the following database tables:
+- A `Comment` belongs to a `User` and belongs to a `book`
+
